@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CrimeCaseController;
+use App\Http\Controllers\OfficerController;
+use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +23,14 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+
+
+Route::get('employees', [OfficerController::class, 'employees'])->middleware('guest');
+Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
+Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
+Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware('guest');
+
 
