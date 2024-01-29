@@ -107,6 +107,7 @@
                 Случаи
             </a>
 
+
             <a href="/finished_cases" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="fas fa-calendar mr-3"></i>
                 Архива
@@ -138,66 +139,42 @@
 
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Вработени во станица Карпош - Скопје
+                    <i class="fas fa-list mr-3"></i> Случаи од станица Карпош - Скопје
                 </p>
                 <div class="bg-white overflow-auto">
                     <table class="min-w-full bg-white">
                         <thead class="bg-gray-800 text-white">
                         <tr>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
+                            <td class="text-left py-3 px-4">Име</td>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Датум</th>
                             <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Статус</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Докази</th>
+                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Овластен полицаец</th>
                         </tr>
                         </thead>
                         <tbody class="text-gray-700">
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                            <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                            <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Подморница</a></td>
+                            <td class="w-1/3 text-left py-3 px-4">2023-11-27</td>
+                            <td class="w-1/3 text-left py-3 px-4">A</td>
+                            <td class="w-1/3 text-left py-3 px-4">Кире Петков</td>
                         </tr>
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Oliver</td>
-                            <td class="w-1/3 text-left py-3 px-4">Williams</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Isabella</td>
-                            <td class="w-1/3 text-left py-3 px-4">Brown</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Хакери</a></td>
+                            <td class="w-1/3 text-left py-3 px-4">2011-03-03</td>
+                            <td class="w-1/3 text-left py-3 px-4">Z</td>
+                            <td class="w-1/3 text-left py-3 px-4">Петко Кирев</td>
                         </tr>
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                            <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                            <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Тероризам</a></td>
+                            <td class="w-1/3 text-left py-3 px-4">2016-02-01</td>
+                            <td class="w-1/3 text-left py-3 px-4">A</td>
+                            <td class="w-1/3 text-left py-3 px-4">Наташа Илиева</td>
                         </tr>
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Oliver</td>
-                            <td class="w-1/3 text-left py-3 px-4">Williams</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <td class="w-1/3 text-left py-3 px-4">Isabella</td>
-                            <td class="w-1/3 text-left py-3 px-4">Brown</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Киднапирање</a></td>
+                            <td class="w-1/3 text-left py-3 px-4">2022-08-27</td>
+                            <td class="w-1/3 text-left py-3 px-4">A</td>
+                            <td class="w-1/3 text-left py-3 px-4">Наташа Илиева</td>
                         </tr>
                         </tbody>
                     </table>

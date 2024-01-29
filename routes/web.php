@@ -31,6 +31,12 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::get('employees', [OfficerController::class, 'employees'])->middleware('guest');
 Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
 Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
+Route::get('case', [CrimeCaseController::class, 'case'])->middleware('guest');
+
 Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware('guest');
+
+
+Route::get('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
+Route::post('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
 
 

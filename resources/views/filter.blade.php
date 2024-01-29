@@ -21,6 +21,86 @@
         .active-nav-link { background: #1947ee; }
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
+        .flex-parent-element {
+            display: flex;
+            width: 50%;
+        }
+
+        .flex-child-element {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .flex-child-element:first-child {
+            margin-right: 20px;
+        }
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -36,7 +116,7 @@
     <nav class="text-white text-base font-semibold pt-3">
         <a href="/" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-tachometer-alt mr-3"></i>
-            Контролна табла
+            Сортирај граѓани
         </a>
         <a href="/employees" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
@@ -131,8 +211,110 @@
     </header>
 
 
+    <main class="w-full flex-grow p-6">
 
+        <h1 class="text-3xl text-black pb-6">Контролна табла</h1>
+        <div style="width: 600px">
+            <form>
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                    </div>
+                    <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Пребарај матичен број..." required>
+                    <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="flex-parent-element">
+            <h3>Возраст</h3>
+
+            <div class="flex-child-element"> <label class="container">&lt;18 год
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="container"> 19-25
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="container">26-60
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="container">60+
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <h3>Пол</h3>
+            <div class="flex-child-element">
+                <label class="container">М
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="container">Ж
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+
+
+        <div class="w-full mt-12">
+            <p class="text-xl pb-3 flex items-center">
+                <i class="fas fa-list mr-3"></i> Граѓани
+            </p>
+
+            <div class="bg-white overflow-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">ЕМБГ</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Презиме</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Пол</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Адреса</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Држава</th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Националност</th>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Телефон</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                    <tr>
+                        <td class="w-1/3 text-left py-3 px-4">1011001470303</td>
+                        <td class="w-1/3 text-left py-3 px-4">Емир</td>
+                        <td class="w-1/3 text-left py-3 px-4">Абази</td>
+                        <td class="w-1/3 text-left py-3 px-4">М</td>
+                        <td class="w-1/3 text-left py-3 px-4">ул.Македонија бр.80 Тетово</td>
+                        <td class="w-1/3 text-left py-3 px-4">Македонија</td>
+                        <td class="w-1/3 text-left py-3 px-4">Албанец</td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="w-1/3 text-left py-3 px-4">0302954470303</td>
+                        <td class="w-1/3 text-left py-3 px-4">Василија</td>
+                        <td class="w-1/3 text-left py-3 px-4">Васиљоска</td>
+                        <td class="w-1/3 text-left py-3 px-4">Ж</td>
+                        <td class="w-1/3 text-left py-3 px-4">ул.154 бр.20 Скопје</td>
+                        <td class="w-1/3 text-left py-3 px-4">Македонија</td>
+                        <td class="w-1/3 text-left py-3 px-4">Македонка</td>
+                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 </div>
+
 
 <!-- AlpineJS -->
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>

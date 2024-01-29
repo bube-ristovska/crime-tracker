@@ -9,4 +9,7 @@ class CrimeCaseController extends Controller
     function cases(){
         return view('cases');
     }
+    function case(){
+        return view('case');
+    }
 }
