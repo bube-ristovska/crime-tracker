@@ -152,30 +152,16 @@
                         </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                        <tr>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Подморница</a></td>
-                            <td class="w-1/3 text-left py-3 px-4">2023-11-27</td>
-                            <td class="w-1/3 text-left py-3 px-4">A</td>
-                            <td class="w-1/3 text-left py-3 px-4">Кире Петков</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Хакери</a></td>
-                            <td class="w-1/3 text-left py-3 px-4">2011-03-03</td>
-                            <td class="w-1/3 text-left py-3 px-4">Z</td>
-                            <td class="w-1/3 text-left py-3 px-4">Петко Кирев</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Тероризам</a></td>
-                            <td class="w-1/3 text-left py-3 px-4">2016-02-01</td>
-                            <td class="w-1/3 text-left py-3 px-4">A</td>
-                            <td class="w-1/3 text-left py-3 px-4">Наташа Илиева</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/namehere">Киднапирање</a></td>
-                            <td class="w-1/3 text-left py-3 px-4">2022-08-27</td>
-                            <td class="w-1/3 text-left py-3 px-4">A</td>
-                            <td class="w-1/3 text-left py-3 px-4">Наташа Илиева</td>
-                        </tr>
+                        @foreach($cases as $case)
+                            <tr>
+                                <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/case/{{$case->c_id}}">{{$case->c_name}}</a></td>
+                                <td class="w-1/3 text-left py-3 px-4">{{$case->opening_date}}</td>
+                                <td class="w-1/3 text-left py-3 px-4">{{$case->c_status}}</td>
+                                <td class="w-1/3 text-left py-3 px-4">{{$case->p_id}}</td>
+                            </tr>
+                        @endforeach
+
+
                         </tbody>
                     </table>
                 </div>

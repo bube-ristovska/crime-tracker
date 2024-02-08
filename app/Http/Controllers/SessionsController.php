@@ -12,7 +12,6 @@ class SessionsController extends Controller
 {
     public function store()
     {
-
         $credentials = request()->validate([
             'badge_no' => 'required',
             'password' => 'required'
@@ -41,6 +40,7 @@ class SessionsController extends Controller
             // Authentication passed
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
+            Session::put('pe_id', $exists[0]->pe_id);
             return redirect()->intended('/');
         }
 
