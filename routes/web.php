@@ -22,14 +22,20 @@ Route::get('/', function () {
 });
 Route::get('/login', function () {
     return view('login');
+
 });
 
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+Route::post('/login', [SessionsController::class, 'store']);
+
+
+Route::get('logout', [SessionsController::class, 'logout']);
 
 
 
 Route::get('employees', [OfficerController::class, 'employees'])->middleware('guest');
 Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
+Route::post('filter', [PeopleController::class, 'filter_post'])->middleware('guest');
+
 Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
 Route::get('case', [CrimeCaseController::class, 'case'])->middleware('guest');
 

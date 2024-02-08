@@ -28,7 +28,11 @@
     <body class="bg-gray-100 font-family-karla flex">
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
             <div class="p-6">
-                <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
+                @if (Session::get('is_policeman'))
+                    <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
+                    @else
+                    <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
+                @endif
                 <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                     <i class="fas fa-plus mr-3"></i> Додади полицаец
                 </button>
@@ -73,7 +77,7 @@
                     <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                         <a href="#" class="block px-4 py-2 account-link hover:text-white">Профил</a>
                         <a href="#" class="block px-4 py-2 account-link hover:text-white">Помош</a>
-                        <a href="#" class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
+                        <a href="/logout" class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
                     </div>
                 </div>
             </header>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Policeman;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,4 +21,6 @@ class OfficerController extends Controller
     {
         return view('register-policeman');
     }
+
+
 }

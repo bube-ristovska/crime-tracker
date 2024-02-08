@@ -153,7 +153,7 @@
             <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Профил</a>
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Помош</a>
-                <a href="#" class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
+                <a href="/logout" class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
             </div>
         </div>
     </header>
@@ -215,15 +215,17 @@
 
         <h1 class="text-3xl text-black pb-6">Контролна табла</h1>
         <div style="width: 600px">
-            <form>
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <form action="/filter" method="post">
+                @csrf
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                         </svg>
                     </div>
-                    <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Пребарај матичен број..." required>
+
+                    <label for="embg" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <input type="text" id="embg" name="embg" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Пребарај матичен број..." required>
                     <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
@@ -268,12 +270,7 @@
 
 
 
-        <div class="w-full mt-12">
-            <p class="text-xl pb-3 flex items-center">
-                <i class="fas fa-list mr-3"></i> Граѓани
-            </p>
-
-            <div class="bg-white overflow-auto">
+            <div class="bg-white overflow-auto max-h-96">
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-800 text-white">
                     <tr>
@@ -288,26 +285,19 @@
                     </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                    <tr>
-                        <td class="w-1/3 text-left py-3 px-4">1011001470303</td>
-                        <td class="w-1/3 text-left py-3 px-4">Емир</td>
-                        <td class="w-1/3 text-left py-3 px-4">Абази</td>
-                        <td class="w-1/3 text-left py-3 px-4">М</td>
-                        <td class="w-1/3 text-left py-3 px-4">ул.Македонија бр.80 Тетово</td>
-                        <td class="w-1/3 text-left py-3 px-4">Македонија</td>
-                        <td class="w-1/3 text-left py-3 px-4">Албанец</td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="w-1/3 text-left py-3 px-4">0302954470303</td>
-                        <td class="w-1/3 text-left py-3 px-4">Василија</td>
-                        <td class="w-1/3 text-left py-3 px-4">Васиљоска</td>
-                        <td class="w-1/3 text-left py-3 px-4">Ж</td>
-                        <td class="w-1/3 text-left py-3 px-4">ул.154 бр.20 Скопје</td>
-                        <td class="w-1/3 text-left py-3 px-4">Македонија</td>
-                        <td class="w-1/3 text-left py-3 px-4">Македонка</td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                    </tr>
+
+                    @foreach($peoples as $people)
+                        <tr>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->embg}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->first_name}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->last_name}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->gender}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->address}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->country}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$people->nationality}}</td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">{{$people->contact}}</a></td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

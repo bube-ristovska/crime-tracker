@@ -163,7 +163,7 @@
             <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Профил</a>
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Помош</a>
-                <a href="#" class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
+                <a href="/logout"class="block px-4 py-2 account-link hover:text-white">Одјави се</a>
             </div>
         </div>
     </header>
