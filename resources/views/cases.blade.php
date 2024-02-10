@@ -28,10 +28,14 @@
 <body class="bg-gray-100 font-family-karla flex">
 <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
     <div class="p-6">
-        <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
-        <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-            <i class="fas fa-plus mr-3"></i> Додади полицаец
-        </button>
+        @if (Session::get('is_policeman'))
+            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
+        @else
+            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
+            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i> <a href="/register-policeman">Додади полицаец</a>
+            </button>
+        @endif
     </div>
     <nav class="text-white text-base font-semibold pt-3">
         <a href="/" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -139,7 +143,7 @@
 
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i> Случаи од станица Карпош - Скопје
+                    <i class="fas fa-list mr-3"></i> Случаи од станица {{$p_address}}
                 </p>
                 <div class="bg-white overflow-auto">
                     <table class="min-w-full bg-white">

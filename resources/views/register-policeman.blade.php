@@ -118,10 +118,14 @@
 <body class="bg-gray-100 font-family-karla flex">
 <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
     <div class="p-6">
-        <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
-        <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-            <i class="fas fa-plus mr-3"></i> Додади полицаец
-        </button>
+        @if (Session::get('is_policeman'))
+            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
+        @else
+            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
+            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i> <a href="/register-policeman">Додади полицаец</a>
+            </button>
+        @endif
     </div>
     <nav class="text-white text-base font-semibold pt-3">
         <a href="/" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
@@ -251,19 +255,18 @@
                                  required
                                 >
                       </div>
-
                       <div class="mb-6">
                           <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                                 for="name"
+                                 for="first_name"
                           >
                               Име
                           </label>
 
                           <input class="border border-gray-400 p-2 w-full  text-gray-500"
                                  type="text"
-                                 name="name"
-                                 value=""
-                                 id="name"
+                                 name="first_name"
+                                 value="{{(Input::has('embg'))?? 'embg'}}"
+                                 id="first_name"
                                  required
                                  disabled="disabled">
                       </div>
@@ -274,16 +277,16 @@
 
                       <div class="mb-6">
                           <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                                 for="lastname"
+                                 for="last_name"
                           >
                               Презиме
                           </label>
 
                           <input class="border border-gray-400 p-2 w-full text-gray-500"
                                  type="text"
-                                 name="lastname"
+                                 name="last_name"
                                  value=""
-                                 id="lastname"
+                                 id="last_name"
                                  required
                                  disabled="disabled" >
                       </div>
@@ -359,6 +362,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <!-- ChartJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

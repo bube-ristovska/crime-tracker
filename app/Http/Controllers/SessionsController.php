@@ -27,7 +27,7 @@ class SessionsController extends Controller
             $policeman = false;
         }
         if($exists == null) {
-            return back()->withErrors(['badge_no' => 'Invalid credentials']);
+            return back()->withErrors(['badge_no' => 'Invalid badge_no']);
         }
 
         foreach ($pass[0] as $key => $val) {
@@ -40,7 +40,11 @@ class SessionsController extends Controller
             // Authentication passed
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
-            Session::put('pe_id', $exists[0]->pe_id);
+            if($policeman){
+                Session::put('p_id', $exists[0]->p_id);
+            } else {
+                Session::put('pe_id', $exists[0]->pe_id);
+            }
             return redirect()->intended('/');
         }
 

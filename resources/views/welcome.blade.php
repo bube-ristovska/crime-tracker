@@ -32,10 +32,10 @@
                     <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
                     @else
                     <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
+                    <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                        <i class="fas fa-plus mr-3"></i> <a href="/register-policeman">Додади полицаец</a>
+                    </button>
                 @endif
-                <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                    <i class="fas fa-plus mr-3"></i> Додади полицаец
-                </button>
             </div>
             <nav class="text-white text-base font-semibold pt-3">
                 <a href="/" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PeopleController extends Controller
 {
     function filter(){
+        if(Session::get('pe_id') == null) {
+            return view('login');
+        }
         $peoples = DB::select('select * from people;');
 
         return view('filter', [
@@ -15,6 +19,9 @@ class PeopleController extends Controller
         ]);
     }
     function filter_post(){
+        if(Session::get('pe_id') == null) {
+            return view('login');
+        }
         $credentials = request()->validate([
             'embg' => 'required'
         ]);
@@ -24,6 +31,13 @@ class PeopleController extends Controller
 
         return view('filter', [
             'peoples' => $peoples
+        ]);
+    }
+    function get_person($embg){
+        $person = DB::select('SELECT * FROM people WHERE embg=:embg', ['embg' => $embg]);
+        dd($person);
+        return view('register-policeman', [
+            'person' => $person[0]
         ]);
     }
 }

@@ -8,16 +8,36 @@ use Illuminate\Support\Facades\Session;
 class CrimeCaseController extends Controller
 {
     function cases(){
+        if(Session::get('pe_id') == null) {
+            return view('login');
+        }
 
-        $police_station= DB::select('select * from police_station where pe_id=:pe_id;',['pe_id'=> Session::get('pe_id')]);
+
+        if(Session::get('is_policeman')){
+            $police_station = DB::select('select * from police_station where p_id=:p_id;',['p_id'=>  Session::get('p_id')]);
+        } else {
+            $police_station = DB::select('select * from police_station where pe_id=:pe_id;',['pe_id'=>  Session::get('pe_id')]);
+        }
+
         $cases = DB::select('select * from crime_case where p_id=:p_id;',['p_id'=> $police_station[0]->p_id]);
 
+
         return view('cases', [
-            'cases' => $cases
+            'cases' => $cases,
+            'p_address'=>$police_station[0]->p_address
         ]);
 
     }
-    function case(){
-        return view('case');
+    function case($wildcard){
+        $case = DB::select('select * from crime_case where c_id=:c_id;',['c_id'=> $wildcard]);
+        $p_address = DB::select('select p_address from police_station where p_id=:p_id;',['p_id'=> $case[0]->p_id]);
+        $statements = DB::select('select * from statements where c_id=:c_id;',['c_id'=> $wildcard]);
+        $evidence = DB::select('select * from evidence_of_case where c_id=:c_id;',['c_id'=> $wildcard]);
+        return view('case', [
+            'case' => $case[0],
+            'p_address'=>$p_address[0]->p_address,
+            'statements'=>$statements,
+            'evidence'=>$evidence,
+        ]);
     }
 }

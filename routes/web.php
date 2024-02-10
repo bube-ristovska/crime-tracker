@@ -5,6 +5,7 @@ use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if(Session::get('pe_id') == null) {
+        return view('login');
+    }
     return view('welcome');
 });
 Route::get('/login', function () {
@@ -37,7 +41,7 @@ Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
 Route::post('filter', [PeopleController::class, 'filter_post'])->middleware('guest');
 
 Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
-Route::get('case', [CrimeCaseController::class, 'case'])->middleware('guest');
+Route::get('case/{wildcard}', [CrimeCaseController::class, 'case'])->middleware('guest');
 
 Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware('guest');
 
@@ -45,4 +49,4 @@ Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware(
 Route::get('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
 Route::post('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
 
-
+Route::get('/get_person/{{embg}}', [PeopleController::class, 'get_person'])->middleware('guest');
