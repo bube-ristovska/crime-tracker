@@ -47,6 +47,6 @@ Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware(
 
 
 Route::get('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
-Route::post('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
+Route::post('register-policeman', [OfficerController::class, 'register_post'])->middleware('guest');
 
-Route::get('/get_person/{{embg}}', [PeopleController::class, 'get_person'])->middleware('guest');
+Route::post('/get-person', [PeopleController::class, 'getPerson']);

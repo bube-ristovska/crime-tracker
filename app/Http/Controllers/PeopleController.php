@@ -33,11 +33,11 @@ class PeopleController extends Controller
             'peoples' => $peoples
         ]);
     }
-    function get_person($embg){
-        $person = DB::select('SELECT * FROM people WHERE embg=:embg', ['embg' => $embg]);
-        dd($person);
-        return view('register-policeman', [
-            'person' => $person[0]
-        ]);
+    public function getPerson(Request $request)
+    {
+        $embg = $request->input('embg');
+        $person = DB::select('SELECT * FROM people WHERE embg = :embg', ['embg' => $embg]);
+
+        return response()->json($person[0] ?? null);
     }
 }

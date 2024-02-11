@@ -279,12 +279,12 @@
                     <thead class="bg-gray-800 text-white">
                     <tr>
                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">ЕМБГ</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Презиме</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Пол</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Адреса</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Држава</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Националност</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Презиме</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Пол</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Адреса</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Држава</th>
+                        <th class=" text-left py-3 px-4 uppercase font-semibold text-sm">Националност</th>
                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Телефон</th>
                     </tr>
                     </thead>
@@ -292,14 +292,14 @@
 
                     @foreach($peoples as $people)
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->embg}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->first_name}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->last_name}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->gender}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->address}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->country}}</td>
-                            <td class="w-1/3 text-left py-3 px-4">{{$people->nationality}}</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">{{$people->contact}}</a></td>
+                            <td class=" text-left py-3 px-3">{{$people->embg}}</td>
+                            <td class=" text-left py-3 px-3">{{$people->first_name}}</td>
+                            <td class=" text-left py-3 px-3">{{$people->last_name}}</td>
+                            <td class=" text-left py-3 px-3">    {{ $people->gender === 'F' ? 'Ж' : 'М' }}</td>
+                            <td class=" text-left py-3 px-3">{{$people->address}}</td>
+                            <td class=" text-left py-3 px-3">{{$people->country}}</td>
+                            <td class=" text-left py-3 px-3">{{$people->nationality}}</td>
+                            <td class="text-left py-3 px-3"><a class="hover:text-blue-500" href="tel:622322662">{{$people->contact}}</a></td>
                         </tr>
                     @endforeach
                     </tbody>

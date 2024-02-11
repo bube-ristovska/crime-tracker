@@ -265,7 +265,7 @@
                           <input class="border border-gray-400 p-2 w-full  text-gray-500"
                                  type="text"
                                  name="first_name"
-                                 value="{{(Input::has('embg'))?? 'embg'}}"
+                                 value=""
                                  id="first_name"
                                  required
                                  disabled="disabled">
@@ -296,20 +296,20 @@
 
                       <div class="mb-6">
                           <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                                 for="email"
+                                 for="badge_no"
                           >
-                              Email
+                              Број на значка
                           </label>
 
                           <input class="border border-gray-400 p-2 w-full"
-                                 type="email"
-                                 name="email"
-                                 value="{{old('email')}}"
-                                 id="email"
+                                 type="text"
+                                 name="badge_no"
+                                 value="{{old('badge_no')}}"
+                                 id="badge_no"
                                  required
                           >
                       </div>
-                      @error('email')
+                      @error('badge_no')
                       <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                       @enderror
 
@@ -362,6 +362,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <!-- ChartJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#embg').on('input', function () {
+            var embg = $(this).val();
+
+            $.ajax({
+                url: '/get-person', // Replace with your actual route
+                type: 'POST',
+                data: { embg: embg, _token: '{{ csrf_token() }}' },
+                success: function (data) {
+                    $('#first_name').val(data.first_name);
+                    $('#last_name').val(data.last_name);
+                }
+            });
+        });
+    });
+</script>
 
 
 </body>
