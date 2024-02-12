@@ -111,6 +111,19 @@
             width: 600px;
         }
 
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            width: 200px;
+            float: right;
+        }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -130,7 +143,7 @@
     <nav class="text-white text-base font-semibold pt-3">
         <a href="/" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-tachometer-alt mr-3"></i>
-            Сортирај граѓани
+             Контролна табла
         </a>
         <a href="/employees" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
@@ -228,7 +241,6 @@
     <main class="w-full flex-grow p-6">
 
         <h1 class="text-3xl text-black pb-6">Контролна табла</h1>
-
 
 
 
@@ -350,6 +362,12 @@
                           </button>
                       </div>
                   </form>
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                    <strong>{{ session()->get('message') }}</strong>
+                    </div>
+                @endif
+
             </div>
         </div>
     </main>

@@ -28,7 +28,7 @@
 
         .flex-child-element {
             flex: 1;
-            margin: 10px;
+            margin: 4px;
         }
 
         .flex-child-element:first-child {
@@ -217,7 +217,7 @@
 
     <main class="w-full flex-grow p-6">
 
-        <h1 class="text-3xl text-black pb-6">Контролна табла</h1>
+        <h1 class="text-3xl text-black pb-6">Филтрирај граѓани</h1>
         <div style="width: 600px">
             <form action="/filter" method="post">
                 @csrf
@@ -229,48 +229,87 @@
                     </div>
 
                     <label for="embg" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <input type="text" id="embg" name="embg" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Пребарај матичен број..." required>
+                    <input type="text" id="embg" name="embg" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Пребарај матичен број..." >
                     <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
+                    <div class="flex-parent-element">
+                        <h3>Возраст</h3>
+
+                        <div class="flex-child-element">
+                            <label class="container">&lt;18
+                                <input type="checkbox" name="age[]" value="0-18">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="container">19-25
+                                <input type="checkbox" name="age[]" value="19-25">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="container">26-60
+                                <input type="checkbox" name="age[]" value="26-60">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="container">60+
+                                <input type="checkbox" name="age[]" value="60-120">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                        <h3>Пол</h3>
+                        <div class="flex-child-element">
+                            <label class="container">М
+                                <input type="checkbox" name="gender[]" value="M">
+                                <span class="checkmark"></span>
+                            </label>
+
+                            <label class="container">Ж
+                                <input type="checkbox" name="gender[]" value="F">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                    </div>
             </form>
         </div>
 
-        <div class="flex-parent-element">
-            <h3>Возраст</h3>
+{{--        <div class="flex-parent-element">--}}
+{{--            <h3>Возраст</h3>--}}
 
-            <div class="flex-child-element"> <label class="container">&lt;18 год
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
+{{--            <div class="flex-child-element"> <label class="container">&lt;18 год--}}
+{{--                    <input type="checkbox" checked="checked">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
 
-                <label class="container"> 19-25
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
+{{--                <label class="container"> 19-25--}}
+{{--                    <input type="checkbox">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
 
-                <label class="container">26-60
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
+{{--                <label class="container">26-60--}}
+{{--                    <input type="checkbox">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
 
-                <label class="container">60+
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <h3>Пол</h3>
-            <div class="flex-child-element">
-                <label class="container">М
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
+{{--                <label class="container">60+--}}
+{{--                    <input type="checkbox">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
+{{--            </div>--}}
+{{--            <h3>Пол</h3>--}}
+{{--            <div class="flex-child-element">--}}
+{{--                <label class="container">М--}}
+{{--                    <input type="checkbox" checked="checked">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
 
-                <label class="container">Ж
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </div>
+{{--                <label class="container">Ж--}}
+{{--                    <input type="checkbox">--}}
+{{--                    <span class="checkmark"></span>--}}
+{{--                </label>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
 
@@ -305,7 +344,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </main>
 </div>
 

@@ -45,7 +45,7 @@ class SessionsController extends Controller
             } else {
                 Session::put('pe_id', $exists[0]->pe_id);
             }
-            return redirect()->intended('/');
+            return view('welcome');
         }
 
         // Authentication failed
