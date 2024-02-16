@@ -19,9 +19,6 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
-    if(Session::get('pe_id') == null) {
-        return view('login');
-    }
     return view('welcome');
 });
 Route::get('/login', function () {
