@@ -186,9 +186,7 @@
 
             <div class="flex flex-wrap mt-6">
                 <div class="w-full lg:w-1/3 pr-0 lg:pr-2">
-                    <p class="text-xl pb-3 flex items-center">
-                        <i class="fas fa-plus mr-3"></i> Слики
-                    </p>
+
                     <div class="p-6 bg-white">
                         <div>
                                 @foreach($evidence as $ev)
@@ -198,9 +196,7 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-1/3 pl-0 lg:pl-2 mt-12 lg:mt-0">
-                    <p class="text-xl pb-3 flex items-center">
-                        <i class="fas fa-check mr-3"></i> Извештаи
-                    </p>
+
                     <div class="p-6 bg-white">
                         <div class="border-b border-black-200 pb-6">
                             <p class="text-sm leading-none text-black-600 dark:text-black-300 ">
@@ -245,9 +241,7 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-1/3 pl-0 lg:pl-2 mt-12 lg:mt-0">
-                    <p class="text-xl pb-3 flex items-center">
-                        <i class="fas fa-check mr-3"></i> Луѓе
-                    </p>
+
                     <div class="p-6 bg-white">
                         <div x-data="{ isOpen: false }" class="relative flex justify-end">
                             <button @click="isOpen = !isOpen"
