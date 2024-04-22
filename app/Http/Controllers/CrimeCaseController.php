@@ -32,9 +32,23 @@ class CrimeCaseController extends Controller
         $case = DB::select('select * from crime_case where c_id=:c_id;',['c_id'=> $wildcard]);
         $p_address = DB::select('select p_address from police_station where p_id=:p_id;',['p_id'=> $case[0]->p_id]);
         $statements = DB::select('select * from statements where c_id=:c_id;',['c_id'=> $wildcard]);
-        $evidence = DB::select('select * from evidence_of_case where c_id=:c_id;',['c_id'=> $wildcard]);
+
+
         $victims=[];
         $witness=[];
+        $evidence_id = [];
+        $evidence = [];
+        foreach ($statements as $statement) {
+            $evidence_id = DB::select('select * from mentions_evidence where s_id=:s_id;',['s_id'=> $statement->s_id]);
+            if (!empty($evidence_id)) { // Check if $evidence_id is not empty
+                $evidence_id[] = $evidence_id[0];
+            }
+        }
+         $evidence_id=collect($evidence_id)->unique();
+        foreach ($evidence_id as $e) {
+            $evidence = DB::select('select * from evidence where e_id=:e_id;',['e_id'=> $e->e_id]);
+            $evidence[] = $evidence[0];
+        }
         foreach ($statements as $st){
             $victim=DB::select('select * from people where pe_id=:pe_id;',['pe_id'=> $st->victim_pe_id]);
             $victims[] = $victim[0];
