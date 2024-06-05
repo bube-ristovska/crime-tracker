@@ -54,6 +54,93 @@
         #clickableTable tr:hover {
             background-color: #d7d4d4;
         }
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .employee-details {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .employee-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .employee-photo img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .employee-info p {
+            margin: 8px 0;
+        }
+
+        .employee-info p strong {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .cases-card {
+            margin-top: 20px;
+        }
+
+        .case-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            background-color: #f1f1f1;
+        }
+
+        .case-details {
+            display: none;
+            padding: 10px;
+        }
+
+        .case-card.active .case-details {
+            display: block;
+        }
+
+        .case-card .case-title {
+            font-weight: bold;
+        }
 
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -99,6 +186,7 @@
     <a href="#"
        class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
         <i class="fas fa-arrow-circle-up mr-3"></i>
+
 
     </a>
 </aside>
@@ -188,43 +276,62 @@
 
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Вработени во {{$p_address}}</h1>
+            <h1 class="text-3xl text-black pb-6">Вработен: {{$employee->first_name}}</h1>
 
 
-            <div class="w-full mt-12">
-                <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i>
-                </p>
-                <div class="bg-white overflow-auto">
-                    <table class="min-w-full bg-white" id="clickableTable">
-                        <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Презиме</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Телефон</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Емаил</th>
-                        </tr>
-                        </thead>
-                        <tbody class="text-gray-700">
 
-                        @foreach($employees as $employee)
-                            <tr data-id="{{$employee->pe_id}}">
-                                <td class="w-1/3 text-left py-3 px-4">{{$employee->first_name}}</td>
-                                <td class="w-1/3 text-left py-3 px-4">{{$employee->last_name}}</td>
-                                <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                                                                   href="tel:622322662">{{$employee->contact}}</a></td>
-                                <td class="text-left py-3 px-4"><a
-                                        class="hover:text-blue-500">{{$employee->nationality}}</a></td>
-                            </tr>
+
+
+            <div class="w-full flex flex-col sm:flex-row h-screen overflow-y-hidden">
+                <main class="w-full sm:w-2/4 flex-grow p-6">
+                    <div class="employee-details">
+                        <h1>Детали за вработениот</h1>
+                        <div class="employee-card">
+                            <div class="employee-photo">
+                                <img src="{{ $employee->picture }}" alt="Фотографија на вработениот">
+                            </div>
+                            <div class="employee-info">
+                                <p><strong>Име:</strong> {{ $employee->first_name }}</p>
+                                <p><strong>Презиме:</strong> {{ $employee->last_name }}</p>
+                                <p><strong>Пол:</strong> {{ $employee->gender }}</p>
+                                <p><strong>Адреса:</strong> {{ $employee->address }}</p>
+                                <p><strong>Контакт:</strong> {{ $employee->contact }}</p>
+                                <p><strong>ЕМБГ:</strong> {{ $employee->embg }}</p>
+                                <p><strong>Дата на раѓање:</strong> {{ $employee->date_of_birth }}</p>
+                                <p><strong>Држава:</strong> {{ $employee->country }}</p>
+                                <p><strong>Националност:</strong> {{ $employee->nationality }}</p>
+                                <p><strong>Број на значка:</strong> {{ $employee->badge_no }}</p>
+                                <p><strong>Дата на вработување:</strong> {{ $employee->p_date_of_employment }}</p>
+                                <p><strong>Ранг:</strong> {{ $employee->rank }}</p>
+                                <p><strong>Адреса на полициска станица:</strong> {{ $p_address }}</p>
+                            </div>
+                        </div>
+                        <a href="{{ url()->previous() }}" class="back-button">Назад</a>
+
+                    </div>
+                </main>
+
+                <aside class="sm:w-2/4">
+                    <h2>Случаи на вработениот</h2>
+                    <div class="cases-card p-6">
+                        @foreach($cases as $case)
+                            <div class="case-card" onclick="toggleDetails(this)">
+                                <div class="case-title">{{ $case->description }}</div>
+                                <div class="case-details">
+                                    <p><strong>Идентификација на изјава:</strong> {{ $case->s_id }}</p>
+                                    <p><strong>Дата на изјава:</strong> {{ $case->statement_date }}</p>
+                                    <p><strong>Време на инцидент:</strong> {{ $case->incident_timestamp }}</p>
+                                    <p><strong>Место на инцидент:</strong> {{ $case->incident_place }}</p>
+                                    <p><strong>Идентификација на случај:</strong> {{ $case->c_id }}</p>
+                                    <p><strong>Жртва ИД:</strong> {{ $case->victim_pe_id }}</p>
+                                    <p><strong>Сведок ИД:</strong> {{ $case->witness_pe_id }}</p>
+                                </div>
+                            </div>
                         @endforeach
-
-
-                        </tbody>
-                    </table>
-
-
-                </div>
+                    </div>
+                </aside>
             </div>
+
         </main>
 
 
@@ -241,21 +348,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const rows = document.querySelectorAll('#clickableTable tr');
-
-        rows.forEach(row => {
-            row.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                if (id) {
-                    window.location.href = `http://127.0.0.1:8000/employees/${id}`;
-                }
-            });
-        });
-    });
-
+    function toggleDetails(element) {
+        element.classList.toggle('active');
+    }
 </script>
-
 </body>
 </html>

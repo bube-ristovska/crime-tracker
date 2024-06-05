@@ -34,13 +34,17 @@ Route::get('logout', [SessionsController::class, 'logout']);
 
 
 Route::get('employees', [OfficerController::class, 'employees'])->middleware('guest');
+Route::get('/employees/{id}', [OfficerController::class, 'show']);
+
 Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
 Route::post('filter', [PeopleController::class, 'filter_post'])->middleware('guest');
 
 Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
+Route::get('register-statement', [CrimeCaseController::class, 'register_statement'])->middleware('guest');
+
 Route::get('case/{wildcard}', [CrimeCaseController::class, 'case'])->middleware('guest');
 
-Route::get('finished_cases', [CrimeCaseController::class, 'index'])->middleware('guest');
+Route::get('finished_cases', [CrimeCaseController::class, 'finished_cases'])->middleware('guest');
 
 
 Route::get('register-policeman', [OfficerController::class, 'register'])->middleware('guest');

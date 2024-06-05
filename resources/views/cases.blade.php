@@ -30,6 +30,9 @@
     <div class="p-6">
         @if (Session::get('is_policeman'))
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
+            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i> <a href="/register-statement">Додади изјава</a>
+            </button>
         @else
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
             <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
@@ -61,7 +64,7 @@
     </nav>
     <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
         <i class="fas fa-arrow-circle-up mr-3"></i>
-        Поставки за профил
+
     </a>
 </aside>
 
@@ -71,7 +74,18 @@
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
             <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-                <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400">
+                @php
+                    $person = DB::select('select * from people where pe_id=:pe_id;', ['pe_id' => Session::get('pe_id')]);
+
+                    if (!empty($person)) {
+                        $image = $person[0]->picture;
+                    } else {
+                        $image = null;
+                    }
+                @endphp
+
+                <img src="{{ $image }}">
+
             </button>
             <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
             <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">

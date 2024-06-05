@@ -8,53 +8,19 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-
-        .font-family-karla {
-            font-family: karla;
-        }
-
-        .bg-sidebar {
-            background: #3d68ff;
-        }
-
-        .cta-btn {
-            color: #3d68ff;
-        }
-
-        .upgrade-btn {
-            background: #1947ee;
-        }
-
-        .upgrade-btn:hover {
-            background: #0038fd;
-        }
-
-        .active-nav-link {
-            background: #1947ee;
-        }
-
-        .nav-item:hover {
-            background: #1947ee;
-        }
-
-        .account-link:hover {
-            background: #3d68ff;
-        }
-        /* styles.css */
-        #clickableTable tr {
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        #clickableTable tr:hover {
-            background-color: #d7d4d4;
-        }
-
+        .font-family-karla { font-family: karla; }
+        .bg-sidebar { background: #3d68ff; }
+        .cta-btn { color: #3d68ff; }
+        .upgrade-btn { background: #1947ee; }
+        .upgrade-btn:hover { background: #0038fd; }
+        .active-nav-link { background: #1947ee; }
+        .nav-item:hover { background: #1947ee; }
+        .account-link:hover { background: #3d68ff; }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -79,7 +45,7 @@
             <i class="fas fa-tachometer-alt mr-3"></i>
             Контролна табла
         </a>
-        <a href="/employees" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+        <a href="/employees" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-sticky-note mr-3"></i>
             Вработени
         </a>
@@ -87,17 +53,16 @@
             <i class="fas fa-table mr-3"></i>
             Филтрирај граѓани
         </a>
-        <a href="/cases" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="/cases"  class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-align-left mr-3"></i>
             Случаи
         </a>
-        <a href="/finished_cases" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="/finished_cases" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
             <i class="fas fa-calendar mr-3"></i>
             Архива
         </a>
     </nav>
-    <a href="#"
-       class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
+    <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
         <i class="fas fa-arrow-circle-up mr-3"></i>
 
     </a>
@@ -108,8 +73,7 @@
     <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
-            <button @click="isOpen = !isOpen"
-                    class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+            <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
                 @php
                     $person = DB::select('select * from people where pe_id=:pe_id;', ['pe_id' => Session::get('pe_id')]);
 
@@ -144,11 +108,11 @@
 
         <!-- Dropdown Nav -->
         <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-            <a href="/" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+            <a href="/"  class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Контролна табла
             </a>
-            <a href="/employees" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+            <a href="/employees" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
                 Вработени
             </a>
@@ -156,13 +120,13 @@
                 <i class="fas fa-table mr-3"></i>
                 Филтрирај граѓани
             </a>
-            <a href="/cases" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+            <a href="/cases" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
                 Случаи
             </a>
 
-            <a href="/finished_cases"
-               class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+
+            <a href="/finished_cases" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="fas fa-calendar mr-3"></i>
                 Архива
             </a>
@@ -180,49 +144,42 @@
             </a>
 
         </nav>
-        <button
-            class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+        <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
             <i class="fas fa-plus mr-3"></i> Нов извештај
         </button>
     </header>
 
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Вработени во {{$p_address}}</h1>
+            <h1 class="text-3xl text-black pb-6">Ахрива - завршени случаеви</h1>
+
 
 
             <div class="w-full mt-12">
                 <p class="text-xl pb-3 flex items-center">
-                    <i class="fas fa-list mr-3"></i>
+                    <i class="fas fa-list mr-3"></i> Случаи од станица {{$p_address}}
                 </p>
                 <div class="bg-white overflow-auto">
-                    <table class="min-w-full bg-white" id="clickableTable">
+                    <table class="min-w-full bg-white">
                         <thead class="bg-gray-800 text-white">
                         <tr>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Име</th>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Презиме</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Телефон</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Емаил</th>
+                            <td class="text-left py-3 px-4">Име</td>
+                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Датум</th>
+                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Овластен полицаец</th>
                         </tr>
                         </thead>
                         <tbody class="text-gray-700">
-
-                        @foreach($employees as $employee)
-                            <tr data-id="{{$employee->pe_id}}">
-                                <td class="w-1/3 text-left py-3 px-4">{{$employee->first_name}}</td>
-                                <td class="w-1/3 text-left py-3 px-4">{{$employee->last_name}}</td>
-                                <td class="text-left py-3 px-4"><a class="hover:text-blue-500"
-                                                                   href="tel:622322662">{{$employee->contact}}</a></td>
-                                <td class="text-left py-3 px-4"><a
-                                        class="hover:text-blue-500">{{$employee->nationality}}</a></td>
+                        @foreach($cases as $case)
+                            <tr>
+                                <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="/case/{{$case->c_id}}">{{$case->c_name}}</a></td>
+                                <td class="w-1/3 text-left py-3 px-4">{{$case->opening_date}}</td>
+                                <td class="w-1/3 text-left py-3 px-4">{{$case->p_id}}</td>
                             </tr>
                         @endforeach
 
 
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </main>
@@ -235,27 +192,9 @@
 <!-- AlpineJS -->
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-        integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 <!-- ChartJS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-        integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
-<script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const rows = document.querySelectorAll('#clickableTable tr');
-
-        rows.forEach(row => {
-            row.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
-                if (id) {
-                    window.location.href = `http://127.0.0.1:8000/employees/${id}`;
-                }
-            });
-        });
-    });
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 
 </body>
 </html>

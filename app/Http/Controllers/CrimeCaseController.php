@@ -28,6 +28,28 @@ class CrimeCaseController extends Controller
         ]);
 
     }
+    function register_statement(){
+        return view('register-statement');
+    }
+    function register_statement_post()
+    {
+       //TODO: so kiki i bojan vodete se po logikata na add policeman
+    }
+    function finished_cases(){
+
+        if(Session::get('is_policeman')){
+            $police_station = DB::select('select * from police_station where p_id=:p_id;',['p_id'=>  Session::get('p_id')]);
+        } else {
+            $police_station = DB::select('select * from police_station where pe_id=:pe_id;',['pe_id'=>  Session::get('pe_id')]);
+        }
+
+        $cases = DB::select('select * from crime_case where p_id=:p_id and c_status=\'Z\';', ['p_id' => $police_station[0]->p_id]);
+
+        return view('archive', [
+            'cases' => $cases,
+            'p_address'=>$police_station[0]->p_address
+        ]);
+    }
     function case($wildcard){
         $case = DB::select('select * from crime_case where c_id=:c_id;',['c_id'=> $wildcard]);
         $p_address = DB::select('select p_address from police_station where p_id=:p_id;',['p_id'=> $case[0]->p_id]);

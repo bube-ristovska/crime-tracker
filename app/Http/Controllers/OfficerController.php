@@ -30,6 +30,22 @@ class OfficerController extends Controller
         ]);
     }
 
+    function show($id){
+        if(Session::get('is_policeman')){
+            $police_station = DB::select('select * from police_station where p_id=:p_id;',['p_id'=>  Session::get('p_id')]);
+        } else {
+            $police_station = DB::select('select * from police_station where pe_id=:pe_id;',['pe_id'=>  Session::get('pe_id')]);
+        }
+        $result = DB::select('select * from policeman join people on policeman.pe_id = people.pe_id where p_id=:p_id and people.pe_id=:pe_id;',['p_id'=>  $police_station[0]->p_id, 'pe_id' => $id]);
+        $cases = DB::select('select * from statements where pe_id=:pe_id;',['pe_id' => $id]);
+
+        return view('employee', [
+            'employee' => $result[0],
+            'p_address'=>$police_station[0]->p_address,
+            'cases' => $cases
+        ]);
+    }
+
     function register()
     {
         return view('register-policeman');

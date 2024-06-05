@@ -41,7 +41,7 @@ class SessionsController extends Controller
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
             if($policeman){
-                Session::put('p_id', $exists[0]->p_id);
+                Session::put('pe_id', $exists[0]->p_id);
             } else {
                 Session::put('pe_id', $exists[0]->pe_id);
             }
