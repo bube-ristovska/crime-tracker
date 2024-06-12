@@ -70,9 +70,7 @@
     <div class="p-6">
         @if (Session::get('is_policeman'))
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> <a href="/register-statement">Додади изјава</a>
-            </button>
+
         @else
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
             <button
@@ -130,6 +128,7 @@
                 <img src="{{ $image }}">
 
             </button>
+
             <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
             <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
                 <a href="#" class="block px-4 py-2 account-link hover:text-white">Профил</a>
@@ -208,7 +207,15 @@
                                 @endforeach
                         </div>
                     </div>
+                    @if (Session::get('is_policeman'))
+                        <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                            <i class="fas fa-plus mr-3"></i> <a href="/register-statement">Додади изјава</a>
+                        </button>
+                    @else
+
+                    @endif
                 </div>
+
                 <div class="w-full lg:w-1/3 pl-0 lg:pl-2 mt-12 lg:mt-0">
 
                     <div class="p-6 bg-white">
@@ -254,6 +261,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="w-full lg:w-1/3 pl-0 lg:pl-2 mt-12 lg:mt-0">
 
                     <div class="p-6 bg-white">
@@ -266,6 +274,7 @@
                                     class="h-full w-full fixed inset-0 cursor-default"></button>
                             <div x-show="isOpen"
                                  class="absolute w-full bg-white rounded-lg shadow-lg py-2 mt-16 r bg-white border border-white-200 rounded-lg shadow text-black-900 md:flex-row md:max-w-xl hover:bg-white-100 dark:border-white-700 dark:bg-white-800 dark:hover:bg-white-700">
+                                @if (!empty($victims))
                                 @foreach($victims as $victim)
                                     <a href="#"
                                        class="flex flex-col items-center bg-white border border-white-200 rounded-lg shadow text-black-900 md:flex-row md:max-w-xl hover:bg-white-100 dark:border-white-700 dark:bg-white-800 dark:hover:bg-white-700">
@@ -279,7 +288,10 @@
                                         </div>
                                     </a>
                                 @endforeach
-                                @foreach($witness as $w)
+                                @endif
+                                    @if (!empty($witness))
+
+                                    @foreach($witness as $w)
                                     <a href="#"
                                        class="flex flex-col items-center bg-white border border-white-200 rounded-lg shadow text-black-900 md:flex-row md:max-w-xl hover:bg-white-100 dark:border-white-700 dark:bg-white-800 dark:hover:bg-white-700">
                                         <img
@@ -292,6 +304,7 @@
                                         </div>
                                     </a>
                                 @endforeach
+                                    @endif
                                 <br>
                             </div>
                         </div>

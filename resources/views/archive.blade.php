@@ -30,9 +30,7 @@
     <div class="p-6">
         @if (Session::get('is_policeman'))
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Полицаец</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> <a href="/register-statement">Додади изјава</a>
-            </button>
+
         @else
             <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Началник</a>
             <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">

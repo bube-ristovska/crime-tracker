@@ -40,14 +40,18 @@ Route::get('filter', [PeopleController::class, 'filter'])->middleware('guest');
 Route::post('filter', [PeopleController::class, 'filter_post'])->middleware('guest');
 
 Route::get('cases', [CrimeCaseController::class, 'cases'])->middleware('guest');
-Route::get('register-statement', [CrimeCaseController::class, 'register_statement'])->middleware('guest');
 
-Route::get('case/{wildcard}', [CrimeCaseController::class, 'case'])->middleware('guest');
+Route::get('case/{wildcard}', [CrimeCaseController::class, 'case'])->name('case')->middleware('guest');
 
 Route::get('finished_cases', [CrimeCaseController::class, 'finished_cases'])->middleware('guest');
 
 
 Route::get('register-policeman', [OfficerController::class, 'register'])->middleware('guest');
 Route::post('register-policeman', [OfficerController::class, 'register_post'])->middleware('guest');
+
+Route::get('register-statement', [CrimeCaseController::class, 'register_statement'])->middleware('guest');
+Route::post('register-statement', [CrimeCaseController::class, 'register_statement_post'])->middleware('guest');
+
+
 
 Route::post('/get-person', [PeopleController::class, 'getPerson']);
