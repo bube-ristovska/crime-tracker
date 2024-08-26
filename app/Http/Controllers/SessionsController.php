@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class SessionsController extends Controller
 {
+    function verifyPassword($inputPassword, $storedHash, $salt)
+    {
+        $hashedInputPassword = crypt($inputPassword . $salt, $storedHash);
+
+        return $hashedInputPassword === $storedHash;
+    }
     public function store()
     {
         $credentials = request()->validate([
@@ -28,17 +35,23 @@ class SessionsController extends Controller
         }
         if($is_officer!=null) {
             $pass = DB::select('select o_password from officer where o_badge_no = :o_badge_no;', ['o_badge_no' => $badge_no]);
+            $salt = DB::select('select salt from officer where o_badge_no = :o_badge_no;', ['o_badge_no' => $badge_no]);
             $policeman = false;
         } else {
             $pass = DB::select('select p_password from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
+            $salt = DB::select('select salt from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
+
         }
 
         foreach ($pass[0] as $key => $val) {
             $value = $val;
             break; // Break after the first key-value pair
         }
-
-        if ($value == $password) {
+        foreach ($salt[0] as $key => $val) {
+            $value2 = $val;
+            break; // Break after the first key-value pair
+        }
+        if ($this->verifyPassword($password, $value, $value2)) {
             // Authentication passed
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
