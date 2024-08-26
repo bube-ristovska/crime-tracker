@@ -53,6 +53,7 @@ class SessionsController extends Controller
         }
         if ($this->verifyPassword($password, $value, $value2)) {
             // Authentication passed
+            Session::put('auth', true);
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
             if($policeman){
