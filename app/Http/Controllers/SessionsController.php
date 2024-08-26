@@ -18,16 +18,19 @@ class SessionsController extends Controller
         ]);
         $password = $credentials['password'];
         $badge_no = $credentials['badge_no'];
+        // mozhe da se najavi kako policaec i kako officer, znaeme koj e koj po znachkata
+
         $policeman = true;
-        $exists = DB::select('select * from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
-        $pass = DB::select('select p_password from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
-        if($exists == null) {
-            $exists = DB::select('select * from officer where o_badge_no = :badge_no;', ['badge_no' => $badge_no]);
-            $pass = DB::select('select o_password from officer where o_badge_no = :badge_no;', ['badge_no' => $badge_no]);
-            $policeman = false;
+        $is_policeman = DB::select('select * from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
+        $is_officer = DB::select('select * from officer where o_badge_no = :badge_no;', ['badge_no' => $badge_no]);
+        if($is_officer==null && $is_policeman==null) {
+            return back()->withErrors(['password' => 'Invalid credentials']);
         }
-        if($exists == null) {
-            return back()->withErrors(['badge_no' => 'Invalid badge_no']);
+        if($is_officer!=null) {
+            $pass = DB::select('select o_password from officer where o_badge_no = :o_badge_no;', ['o_badge_no' => $badge_no]);
+            $policeman = false;
+        } else {
+            $pass = DB::select('select p_password from policeman where badge_no = :badge_no;', ['badge_no' => $badge_no]);
         }
 
         foreach ($pass[0] as $key => $val) {
@@ -35,15 +38,14 @@ class SessionsController extends Controller
             break; // Break after the first key-value pair
         }
 
-
         if ($value == $password) {
             // Authentication passed
             Session::put('badge_no', $badge_no);
             Session::put('is_policeman', $policeman);
             if($policeman){
-                Session::put('p_id', $exists[0]->p_id);
+                Session::put('pe_id', $is_policeman[0]->pe_id);
             } else {
-                Session::put('pe_id', $exists[0]->pe_id);
+                Session::put('pe_id', $is_officer[0]->pe_id);
             }
             return view('welcome');
         }
@@ -55,6 +57,8 @@ class SessionsController extends Controller
     public function logout()
     {
         Session::forget('badge_no');
+        Session::forget('p_id');
+        Session::forget('pe_id');
         Session::forget('is_policeman');
         return redirect('/login');
     }
