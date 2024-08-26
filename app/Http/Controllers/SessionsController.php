@@ -23,8 +23,13 @@ class SessionsController extends Controller
             'badge_no' => 'required',
             'password' => 'required'
         ]);
+
         $password = $credentials['password'];
         $badge_no = $credentials['badge_no'];
+        if (!is_numeric($badge_no)) {
+            // Redirect back with an error message
+            return back()->withErrors(['password' => 'Invalid credentials']);
+        }
         // mozhe da se najavi kako policaec i kako officer, znaeme koj e koj po znachkata
 
         $policeman = true;
@@ -68,7 +73,6 @@ class SessionsController extends Controller
         // Authentication failed
         return back()->withErrors(['password' => 'Invalid credentials']);
     }
-
     public function logout()
     {
         Session::forget('badge_no');

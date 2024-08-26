@@ -12,8 +12,7 @@ class PeopleController extends Controller
         if(Session::get('pe_id') == null) {
             return view('login');
         }
-        $peoples = DB::select('select * from people;');
-
+        $peoples = DB::table('people')->get();
         return view('filter', [
             'peoples' => $peoples
         ]);
@@ -74,8 +73,8 @@ class PeopleController extends Controller
     public function getPerson(Request $request)
     {
         $embg = $request->input('embg');
-        $person = DB::select('SELECT * FROM people WHERE embg = :embg', ['embg' => $embg]);
-
+        $person = DB::table('people')
+            ->where('embg', $embg)->get();
         return response()->json($person[0] ?? null);
     }
 }
